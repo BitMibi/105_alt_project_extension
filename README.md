@@ -58,7 +58,7 @@ Dino Handyman: Man Handier will be an action platformer in which the player must
 
 ## Wish to Have Features
 
- Endless mode. Not technically endless but it would consist of every level (plus maybe some exclusive ones) in the game smooshed together under a strict time limit. Depending on how well you do in each level (mainly how fast you beat it) you can gain time. This will probably be akin to Meta Knightmare Ultra from Kirby Superstar Ultra or Bloody Palace in DMC. A true test of skill.
+* Endless mode. Not technically endless but it would consist of every level (plus maybe some exclusive ones) in the game smooshed together under a strict time limit. Depending on how well you do in each level (mainly how fast you beat it) you can gain time. This will probably be akin to Meta Knightmare Ultra from Kirby Superstar Ultra or Bloody Palace in DMC. A true test of skill.
 
 * Discord rich presence to show ALL your friends you're playing the worst game ever made by human hands :). This would include showing which level you are currently playing and your current time / style rank.
 
