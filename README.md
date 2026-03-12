@@ -37,7 +37,7 @@ Dino Handyman: Man Handier will be a action platformer in which the player must 
 ## Should Have Features
 
 * A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the first.
-* Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file. Examples, double jump, directional dash, grappling hook (similar to how it functions in Speedrunners - shoots at a set angle then swings the arc based on distance away from hit surface) etc. 
+* Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file. Examples, double jump, directional dash, grappling hook (similar to how it functions in _Speedrunners_ - shoots at a set angle then swings the arc based on distance away from hit surface) etc. 
 * Combat abilities that allow you to fight back against the enemies. Something simple like kicking but more advanced options like projectiles or in-depth close quarters attacks.
 * _If_ the combat abilities were included, boss stages would be included. 
 * Juicy effects for player feedback e.g hitstop, particles etc
@@ -48,14 +48,14 @@ Dino Handyman: Man Handier will be a action platformer in which the player must 
 
 * A secrets menu with various locked items unlockable through star acuqiration. e.g various minigames, dino recolours, and maybe a super hard level for ALL stars acquired.
 * A cheats menu that can be accessed by inputting a code in a level. Stars would be unacquirable with cheats. Main cheats could include an enemy spawner, kill all in a room, and no clip.
-* Stemming off the combat system, a way to select different movesets for different situations (think Milky Way Wishes from Kirby Super Star) could be an interesting way to spice up gameplay.
+* Stemming off the combat system, a way to select different movesets for different situations (think _Milky Way Wishes from Kirby Super Star_) could be an interesting way to spice up gameplay.
 * Checkpoints to restart from should the player lose all of their health. This would remember which enemies have or have not died upon hitting the checkpoint
 
 
 ## Wish to Have Features
 
-* Endless* mode. Not _technically_ endless but it would consist of every level (plus maybe some exclusive ones) in the game smooshed together under a strict time limit. Depending on how well you do in each level (mainly how fast you beat it) you can gain time. This will probably be akin to Meta Knightmare Ultra from Kirby Superstar Ultra or Bloody Palace in DMC. A true test of skill.
+* Endless* mode. Not _technically_ endless but it would consist of every level (plus maybe some exclusive ones) in the game smooshed together under a strict time limit. Depending on how well you do in each level (mainly how fast you beat it) you can gain time. This will probably be akin to _Meta Knightmare Ultra from Kirby Superstar Ultra_ or _Bloody Palace in DMC_. A true test of skill.
 * Discord rich presence to show ALL your friends you're playing the worst game ever made by human hands :). This would include showing which level you are currently playing and your current time / style rank.
 * Coyote Time. Allowing the player to jump for a few seconds after leaving the ground would make the game feel much nicer
-* Style meter. Style would be award for cool tech (maybe like wave dashing) but mainly from dealing damage. Could also implement a fresh meter (yes this is inspired but ultrakill what of it) that gives less style the longer you use a single weapon, rewarding switching kits often (this would obviously only be implemented if the combat system was too).
+* Style meter. Style would be award for cool tech (maybe like wave dashing) but mainly from dealing damage. Could also implement a fresh meter (yes this is inspired by _Ultrakill_) that gives less style the longer you use a single weapon, rewarding switching kits often (this would obviously only be implemented if the combat system was too).
 
