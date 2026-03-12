@@ -36,7 +36,7 @@ Dino Handyman: Man Handier will be a action platformer in which the player must 
 
 ## Should Have Features
 
-* A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the first.
+* A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the one before.
 * Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file. Examples, double jump, directional dash, grappling hook (similar to how it functions in _Speedrunners_ - shoots at a set angle then swings the arc based on distance away from hit surface) etc. 
 * Combat abilities that allow you to fight back against the enemies. Something simple like kicking to start but could branch into more advanced options like projectiles or in-depth close quarters attacks.
 * _If_ the combat abilities were included, boss stages would be included. 
