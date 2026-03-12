@@ -1,80 +1,61 @@
-# CMP105 Alternative Project
-
-_NOTE: This is an example based on the alternative project as if submitted for the Trunk assignment_
-
-## Game 
-
-**Dino Hanyman: Spanner in the Works** 
-
-A two-level platformer prototype developed as an alternative trunk project to extend for CMP105 students from 2026 onwards. This project has most of the base requirements for a group submission. In the first level, the player has to navigate to the far right-side of the screen, avoiding pitfalls, and activate a lever before returning to the start. In the second level the player must investigate the high wall, backtrack to a box and jump into it from below to reveal a coin, colliding with the coin grants the ability to double-jump, using which they can navigate to the end of the level.
-
-The engineering for this game is restricted to solely using the framework with few additions. 
-
-**Controls:** 
-
-WASD to move,
-Spacebar to jump,
-F to interact (prompts will appear when possible),
-R to reset (if you get stuck or fall down)
-P to pause,
-L-Control to dash,
-left mouseclick in the menu.
-
-***Extension suggestions***
-
-In addition to the proposal laid out below, there are several features which could usefully be added to this game as part of a branch project, here are a few:
-
-* The game cannot be paused
-* Entirely rework the player controller for precise teleportation-based movement rather than acceleration (which is odd in a platformer)
-* Write a textureLoader or textureManager class
-* Write a levelLoader that reads the tilemaps in from a file rather than them being hardcoded
-* Create a level editor where players can use the full tileset to create their own levels
-* Add more player actions -- the main character has a kick as part of their spritesheet
-* Add enemies with platform-restricted pathing 
-* Gravity manipulation 
-* Create a platforming setpiece to act as the final mechanical challenge
+# CMP105 Extension Proposal
 
 ## Student Details
 
-**Student Name:** William Kavanagh
+**Name:** Ethan Cowan
 
-**Student Number:** 0000001
+**Team:** Machop
 
-**Course:** _CGAD_ / _CGT_ I am of both courses, and of none.
+**Course:** _CGAD_ 
 
----
----
+**Abertay id:** 2502541@uad.ac.uk
 
-# Proposal
+## Game Extended
+Dino Handyman
+
+author(s)
+
+_supplied project_  
+
+## Title of Extension
+
+Dino Handyman: Man handier
 
 ## Brief Overview of game 
 
-Dino Handyman: Spanner in the Works, will be a single-level metroidvania platformer where the play controls a small dinosaur. To begin with they will be able to jump, as the game progresses they will gain three skills -- dashing, double-jumping and attacking, in order to complete the game. The level will be setup so that progress is only possible with each ability, e.g., to cross the largest gap you will need to double-jump and to dash. The player will be timed while completing the level and at the end of the game, if they complete it without dying, they will be shown their time alongside the best time achieved. Additional levels could be created later thanks to the use of a data-driven level loading system which is used as the tilemap for the game. 
+Dino Handyman: Man Handier will be a action platformer in which the player must complete a variety of odd jobs, and fending off those that try to stop you. Each of the beginning levels will introduce the player to different mechanics, such as enemies and power-ups, and give the player more abilities (such as dashing, double jumping) and more before thrusting them into platforming hell. The levels will have time requirements to achieve star ratings (1-3 stars) - which may unlock certain secrets. Thanks to the abilities being permanent unlocks, revisting levels to obtain these stars will be rewarded.
+
+
 
 ## Must Have Features
 
-* Spanner Throwing: The player will be able to press 'r' to throw a spanner in the direction they are facing with a slight arc before it falls to the ground. 
+* Data driven level loading to make creation of each level easier (This was already done within my group game).
+* Enemies. For example a simple goomba-esque moving back and forth until it hits something enemy or a boo-like follows the player unless being looked at. Perhaps even an enemy that fires an arcing projectile.  
+* Star ranks for each level mainly dictated by speed, but could be given based on speed and style/score.
 
-* Enemies: Gremlins will be in certain parts of the level and will move towards a player if they are in range. On collision with the player the level will be reset on collision with a spanner they will despawn.
 
 ## Should Have Features
 
-* Data-driven Level Loading: To create a level large enough to introduce the new mechanics without making the code a mess. 
+* A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the first.
+* Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file.
+* Combat abilities that allow you to fight back against the enemies. Something simple like kicking but more advanced options like projectiles or in-depth close quarters attacks.
+* _If_ the combat abilities were included, boss stages would be included. 
+* Juicy effects for player feedback e.g hitstop, particles etc
 
-* Lives and Losing: The play will only have a three lives. If they fall off a platform or hit an enemyn they will lose one life and if they get to zero lives they will see a game over screen.
 
-* Pausing: The game will be able to be paused with a simple transparent overlay. Music will be paused similarly and resumed when play continues.
 
 ## Could Have Features
 
-* Leaderboard: The speed with which a player completes the level will be written to file and then displayed once the level is completed.
+* A secrets menu with various locked items unlockable through star acuqiration. e.g various minigames, dino recolours, and maybe a super hard level for ALL stars acquired.
+* A cheats menu that can be accessed by inputting a code in a level. Stars would be unacquirable with cheats. Main cheats could include an enemy spawner, kill all in a room, and no clip.
+* Stemming off the combat system, a way to select different movesets for different situations (think Milky Way Wishes from Kirby Super Star) could be an interesting way to spice up gameplay.
+* Checkpoints to restart from should the player lose all of their health. This would remember which enemies have or have not died upon hitting the checkpoint
 
-* A Heads-up Display: Showing the time taken so far, the dash, wrench and double-jump cooldowns and the number of lives remaining will be shown fixed to the screen.
-
-* Gremlin Animations: The gremlins will have different animation cycles including walking, running, idle, and attacking, for various actions they can be performing. 
 
 ## Wish to Have Features
 
-* Checkpoints: There will be positions in the level where the player can restart from if they lose a life, should they have got far enough. These will be placed where the player gets new abilities.
+* Endless* mode. Not _technically_ endless but it would consist of every level (plus maybe some exclusive ones) in the game smooshed together under a strict time limit. Depending on how well you do in each level (mainly how fast you beat it) you can gain time. This will probably be akin to Meta Knightmare Ultra from Kirby Superstar Ultra or Bloody Palace in DMC. A true test of skill.
+* Discord rich presence to show ALL your friends you're playing the worst game ever made by human hands :). This would include showing which level you are currently playing and your current time / style rank.
+* Coyote Time. Allowing the player to jump for a few seconds after leaving the ground would make the game feel much nicer
+* Style meter. Style would be award for cool tech (maybe like wave dashing) but mainly from dealing damage. Could also implement a fresh meter (yes this is inspired but ultrakill what of it) that gives less style the longer you use a single weapon, rewarding switching kits often (this would obviously only be implemented if the combat system was too).
 
-* Coyote Time: The platforming will be enhanced by coyote time, a grace period during which the player can still jump even if they are not on a platform. 
