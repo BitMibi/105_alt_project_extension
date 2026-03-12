@@ -23,7 +23,7 @@ Dino Handyman: Man handier
 
 ## Brief Overview of game 
 
-Dino Handyman: Man Handier will be a action platformer in which the player must complete a variety of odd jobs, and fending off those that try to stop you. Each of the beginning levels will introduce the player to different mechanics, such as enemies and power-ups, and give the player more abilities (such as dashing, double jumping) and more before thrusting them into platforming hell. The levels will have time requirements to achieve star ratings (1-3 stars) - which may unlock certain secrets. Thanks to the abilities being permanent unlocks, revisting levels to obtain these stars will be rewarded.
+Dino Handyman: Man Handier will be a action platformer in which the player must complete a variety of odd jobs, and fending off those that try to stop you. Each of the beginning levels will introduce the player to different mechanics, such as enemies and power-ups, and give the player more abilities (such as dashing, double jumping) and more before thrusting them into platforming "hell". The levels will have requirements to achieve star ratings (1-3 stars) - which may unlock certain secrets. Thanks to the abilities being permanent unlocks, revisting levels to obtain these stars will be rewarded.
 
 
 
@@ -37,7 +37,7 @@ Dino Handyman: Man Handier will be a action platformer in which the player must 
 ## Should Have Features
 
 * A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the first.
-* Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file.
+* Abilities that stay unlocked rather than being unlocked in a level and usuable in each subsequent level, but remaining unlocked for a save file. Examples, double jump, directional dash, grappling hook (similar to how it functions in Speedrunners - shoots at a set angle then swings the arc based on distance away from hit surface) etc. 
 * Combat abilities that allow you to fight back against the enemies. Something simple like kicking but more advanced options like projectiles or in-depth close quarters attacks.
 * _If_ the combat abilities were included, boss stages would be included. 
 * Juicy effects for player feedback e.g hitstop, particles etc
