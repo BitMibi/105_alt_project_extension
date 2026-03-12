@@ -13,7 +13,7 @@
 ## Game Extended
 Dino Handyman
 
-author(s)
+William Kavanagh
 
 _supplied project_  
 
