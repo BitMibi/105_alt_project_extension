@@ -96,7 +96,6 @@ LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, Gam
 	m_player.setPosition({ 100, 100 });
 	m_player.setAudio(&m_audio);
 
-	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 
 	// other bits
 	sf::Vector2f boop_location = { 100, 72 * 2 + 100 };
