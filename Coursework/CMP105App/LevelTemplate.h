@@ -11,19 +11,15 @@ public:
     LevelTemplate(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio);
 
 
-    void setUpLevel(std::string fileToLoad, std::string textureFile, std::string bgTexture);
-    void tileMapReading(std::string& line, std::vector<int>& tileMap, int b);
+    void setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture);
+    
+    void updateCameraAndBackground(Player& playerRef, TileMap& bgRef);
 
 private:
-    
-    void updateCameraAndBackground();
 
-    TileMap m_tilemap; 
-    TileMap m_bgtilemap; 
-    Player m_player;  
     sf::Texture m_tileTexture; 
-    sf::Text m_alertText; 
-    sf::Font m_font; 
+    //sf::Text m_alertText; would like to read in, but maybe later
+    //sf::Font m_font; 
 
     const sf::Vector2i WORLD_SIZE;
     const sf::Vector2i VIEW_SIZE;

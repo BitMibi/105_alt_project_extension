@@ -1,27 +1,13 @@
 
-levelTiles columns 20 
-levelTiles rows 9
-levelTiles tile_size 28
-levelTiles sheet_spacing 1
+levelTiles columns 20 0
+levelTiles rows 9 0
+levelTiles tile_size 28 0
+levelTiles sheet_spacing 1 0
 levelTiles mapDimensions 40 8
+levelTiles position 0 100
 
-tileMap -1   -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 -1 -1 -1  -1  -1  -1  -1  -1  -1 -1 -1 -1  -1  -1  -1  -1 -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
-tileMap	-1  131  -1  -1  -1 131  -1  -1  -1 131  21  22  23 -1 -1 -1  21  22  22  22  22  23 -1 -1 -1  21  22  22  23 -1  -1  -1  -1  -1  -1  -1  -1  -1  -1  -1 
-tileMap	-1  131  -1  -1  -1 131  -1  21  22  22 121 122 123 -1 -1 -1 121 122 122 122 122 123 -1 -1 -1 121 122 122 123 22  22  23  -1  -1  -1  -1  -1  -1  -1  -1 
-tileMap	-1  131  -1  -1  21  22  22 121 122 122 121 122 123 -1 -1 -1 121 122 122 122 122 123 -1 -1 -1 121 122 122 123 122 122 123 22  22  22  22  22  22  22  23 
-tileMap	21   22  22  22 121 122 122 121 122 122 121 122 123 -1 -1 -1 121 122 122 122 122 123 -1 -1 -1 121 122 122 123 122 122 123 122 122 122 122 122 122 122 123
-tileMap	121 122 122 122 121 122 122 121 122 122 121 122 123 -1 -1 -1 121 122 122 122 122 123 -1 -1 -1 121 122 122 123 122 122 123 122 122 122 122 122 122 122 123
-tileMap	121 122 122 122 121 122 122 121 122 122 121 122 123 -1 -1 -1 121 122 122 122 122 123 -1 -1 -1 121 122 122 123 122 122 123 122 122 122 122 122 122 122 123
-tileMap	141 142 142 142 141 142 142 141 142 142 141 142 143 -1 -1 -1 141 142 142 142 142 143 -1 -1 -1 141 142 142 143 142 142 143 142 142 142 142 142 142 142 143 />
-
-
-levelTiles position
-
-background tile_size
-background num_columns
-background num_rows
-
-background mapDimensions
-tileMap
-
-background position
+background tile_size 24 0
+background columns 8 0
+background rows 3 0
+background mapDimensions 14 3
+background position 0 0

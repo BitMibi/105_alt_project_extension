@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "LevelTemplate.h"
 #include "Framework/Collision.h"
 #include "Framework/TileMap.h"
 #include "Player.h"
@@ -7,8 +8,9 @@
 #include "Flag.h"
 #include <algorithm>
 
+
 class LevelWithTiles :
-    public Scene
+    public LevelTemplate 
 {
 public:
     LevelWithTiles(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio);
