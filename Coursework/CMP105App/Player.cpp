@@ -25,7 +25,7 @@ Player::Player()
 
 	setCollisionBox({ {12,12}, { 45,51 } });
 
-	m_isGrounded = false;
+	m_isGrounded = false; 
 }
 
 void Player::handleInput(float dt)

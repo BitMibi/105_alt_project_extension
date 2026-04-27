@@ -11,7 +11,7 @@ public:
     LevelTemplate(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio);
 
 
-    void setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture);
+    void setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture);
     
     void updateCameraAndBackground(Player& playerRef, TileMap& bgRef);
 

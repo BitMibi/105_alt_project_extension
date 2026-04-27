@@ -4,7 +4,10 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	: LevelTemplate(window, input, gameState, audio), m_alertText(m_font)
 {
 
-	setUpLevel(m_player, m_tilemap, m_bgtilemap, "data/level1.txt", "data/level1TM.txt", "tileMaps/level1_bgTiles.csv", "gfx/tilemap.png", "gfx/tilemap-backgrounds.png");
+	setUpLevel(m_tilemap, m_bgtilemap, "data/level1.txt", "data/level1TM.txt", "data/level1BG.txt", "gfx/tilemap.png", "gfx/tilemap-backgrounds.png");
+	m_tilemap.buildLevel();
+	m_bgtilemap.buildLevel(); 
+	
 	/*
 	GameObject tile;
 	std::vector<GameObject> tileSet;
@@ -94,7 +97,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	// setup player 
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
-	*/
+	//*/
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 	m_alertText.setString("Who keeps turning\nthe wind off?");
@@ -123,6 +126,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setLeverPosition({ 2730, 252 });
 	m_player.setAudio(&m_audio);
 	m_player.setInput(&m_input);
+	m_player.setEdges(0, WORLD_SIZE.x);
 }
 
 void LevelWithTiles::handleInput(float dt)

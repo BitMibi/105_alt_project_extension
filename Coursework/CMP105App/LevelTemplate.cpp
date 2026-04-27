@@ -22,7 +22,7 @@ void LevelTemplate::updateCameraAndBackground(Player& playerRef, TileMap& bgRef)
 	bgRef.setPosition({ player_pos.x - halfViewWidth, 0 });
 }
 
-void LevelTemplate::setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture) {
+void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture) {
 
 	GameObject tile;
 	std::vector<GameObject> tileSet;
@@ -51,12 +51,12 @@ void LevelTemplate::setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef
 	//Read in the values in the txt 
 	while (currentLevelData >> line >> type >> value1 >> value2) {
 		if (line == "levelTiles") {
-			if (type == "colmuns") { num_columns = value1; }
-			if (type == "rows") { num_rows = value1; }
-			if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
-			if (type == "sheet_spacing"){ sheet_spacing = value1; }  // Gap between tiles
-			if (type == "mapDimensions") { mapDimensions = { value1, value2 }; }
-			if (type == "position") {position = { float(value1), float(value2) };}
+			if (type == "columns") { num_columns = value1; }
+			else if (type == "rows") { num_rows = value1; }
+			else if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
+			else if (type == "sheet_spacing"){ sheet_spacing = value1; }  // Gap between tiles
+			else if (type == "mapDimensions") { mapDimensions = { value1, value2 }; }
+			else if (type == "position") {position = { float(value1), float(value2) }; break;}
 		}
 		
 	}
@@ -97,10 +97,8 @@ void LevelTemplate::setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef
 	int tileValue;
 
 	while (tileMapData >> tileValue) {
-
+		
 		if (tileValue >= 0) {
-
-
 			tileMap.push_back(tileValue);
 
 		}
@@ -117,29 +115,24 @@ void LevelTemplate::setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef
 	tmRef.setTileSet(tileSet);
 	tmRef.setTileMap(tileMap, mapDimensions);
 	tmRef.setPosition(position);
-	tmRef.buildLevel();
+	//tmRef.buildLevel();
 
 	tileSet.clear();
+	tileMap.clear();
 
-	// setup background
-	tile_size = 24;
-	num_columns = 8;
-	num_rows = 3;
 
 	//Read in the background values
 	 while (currentLevelData >> line >> type >> value1 >> value2) {
-		 std::cout << "they call me the reader ";
-		if (line == "levelTiles") {
-			if (type == "colmuns") { num_columns = value1; }
-			if (type == "rows") { num_rows = value1; }
-			if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
-			if (type == "sheet_spacing") { sheet_spacing = value1; }  // Gap between tiles
-			if (type == "mapDimensions") { mapDimensions = { unsigned(value1), unsigned(value2) }; }
-			if (type == "position") { position = { float(value1), float(value2) }; }
+		if (line == "background") {
+			if (type == "columns") { num_columns = value1; }
+			else if (type == "rows") { num_rows = value1; }
+			else if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
+			else if (type == "mapDimensions") { mapDimensions = { unsigned(value1), unsigned(value2) }; }
+			else if (type == "position") { position = { float(value1), float(value2) }; }
 		}
 
 	}
-
+	 	 
 	
 	 if (currentLevelData.is_open()) {
 		 currentLevelData.close();
@@ -176,27 +169,18 @@ void LevelTemplate::setUpLevel(Player& playerRef, TileMap& tmRef, TileMap& bgRef
 			tileMap.push_back(tileValue);
 
 		}
-		else if (tileValue == -1) {
-			tileMap.push_back(b);
-
-		}
 	}
+
+
+	
+
 	if (bgTileData.is_open()) { bgTileData.close(); }
 	//Tile map file closed
-	mapDimensions = { 14,3 };
 	
 	bgRef.loadTexture(bgTexture);
 	bgRef.setTileSet(tileSet);
 	bgRef.setTileMap(tileMap, mapDimensions);
 	bgRef.setPosition(position);
-	bgRef.buildLevel();
-
-	// setup player 
-	playerRef.setInput(&m_input);
-	playerRef.setEdges(0, WORLD_SIZE.x);
-	playerRef.setAudio(&m_audio);
-
-	
-	
+	//bgRef.buildLevel();	
 
 }
