@@ -33,8 +33,8 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 	//Used to read in data 
 	std::string line;
 	std::string type;
-	unsigned value1;
-	unsigned value2; //used for the map dimensions
+	int value1;
+	int value2; //used for the map dimensions
 
 	std::ifstream currentLevelData(dataFileToLoad);
 	if (!currentLevelData.is_open()) {
@@ -55,7 +55,7 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 			else if (type == "rows") { num_rows = value1; }
 			else if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
 			else if (type == "sheet_spacing"){ sheet_spacing = value1; }  // Gap between tiles
-			else if (type == "mapDimensions") { mapDimensions = { value1, value2 }; }
+			else if (type == "mapDimensions") { mapDimensions = { unsigned(value1), unsigned(value2) }; }
 			else if (type == "position") {position = { float(value1), float(value2) }; break;}
 		}
 		
@@ -90,6 +90,7 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 	
 	//Read in the tile map
 	std::vector<int> tileMap;
+	tileMap.clear();
 	std::ifstream tileMapData(tileMapFile);
 	if (!tileMapData.is_open()) {
 		std::cerr << "no tile map dot txt file :(";
