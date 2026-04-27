@@ -25,5 +25,6 @@ private:
 
     sf::Color m_defaultButtonColour = sf::Color(100, 250, 100, 50);
     sf::Color m_hoverButtonColour = sf::Color(80, 230, 80, 150);
+    sf::Color m_lockedButtonColour = sf::Color(0, 0, 0, 0);
 };
 

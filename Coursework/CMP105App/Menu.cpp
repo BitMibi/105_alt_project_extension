@@ -23,7 +23,7 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_play2Button.setSize({ 216,100 });			
 	m_play2Button.setPosition({ 108,198 });
 	m_play2Button.setCollisionBox({ {0,0}, m_playButton.getSize() });
-	m_play2Button.setFillColor(m_defaultButtonColour);
+	m_play2Button.setFillColor(m_lockedButtonColour);
 
 	if (!m_titleSplash.loadFromFile("gfx/title_splash.png")) std::cerr << "no splash found";
 	m_titleImage.setTexture(&m_titleSplash);

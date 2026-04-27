@@ -1,8 +1,12 @@
 #include "LevelTwoWithTiles.h"
 
 LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio)
-	: Scene(window, input, gameState, audio), m_alertText(m_font)
+	: LevelTemplate(window, input, gameState, audio), m_alertText(m_font)
 {
+	setUpLevel(m_tilemap, m_bgtilemap, "data/level2.txt", "data/level2TM.txt", "data/level2BG.txt", "gfx/tilemap.png", "gfx/tilemap-backgrounds.png");
+	m_tilemap.buildLevel();
+	m_bgtilemap.buildLevel();
+	/*
 	GameObject tile;
 	std::vector<GameObject> tileSet;
 
@@ -90,13 +94,13 @@ LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, Gam
 	m_bgtilemap.setPosition({ 0, -200 });
 	m_bgtilemap.buildLevel();
 
+	*/
 	// setup player 
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
 	m_player.setPosition({ 100, 100 });
 	m_player.setAudio(&m_audio);
 
-	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 
 	// other bits
 	sf::Vector2f boop_location = { 100, 72 * 2 + 100 };
