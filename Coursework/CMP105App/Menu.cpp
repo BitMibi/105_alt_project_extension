@@ -23,7 +23,20 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_play2Button.setSize({ 216,100 });			
 	m_play2Button.setPosition({ 108,198 });
 	m_play2Button.setCollisionBox({ {0,0}, m_playButton.getSize() });
-	m_play2Button.setFillColor(m_lockedButtonColour);
+	m_play2Button.setFillColor(m_defaultButtonColour);
+
+
+	//setup stars
+	for (int i = 0; i < 3; i++) {
+		m_level1Stars[i] = new Star;
+		m_level1Stars[i]->setSize({ 50,50 });
+		m_level1Stars[i]->setPosition({ float(304 - (50 * i)), 118 });	//Set the star positions
+	}
+	for (int i = 0; i < 3; i++) {
+		m_level2Stars[i] = new Star;
+		m_level2Stars[i]->setSize({ 50,50 });
+		m_level2Stars[i]->setPosition({ float(304 - (50 * i)), 258 });	//Set the star positions
+	}
 
 	if (!m_titleSplash.loadFromFile("gfx/title_splash.png")) std::cerr << "no splash found";
 	m_titleImage.setTexture(&m_titleSplash);
@@ -39,7 +52,8 @@ void Menu::handleInput(float dt)
 		m_gameState.setCurrentState(State::LEVELONE);
 	}
 	if (m_input.isLeftMousePressed() &&
-		Collision::checkBoundingBox(m_play2Button, mousePos))
+		Collision::checkBoundingBox(m_play2Button, mousePos) &&
+		!m_locked2)
 	{
 		m_gameState.setCurrentState(State::LEVELTWO);
 	}
@@ -50,15 +64,26 @@ void Menu::render()
 	beginDraw();
 	m_window.draw(m_titleImage);
 	m_window.draw(m_playButton);
+	for (int i = 0; i < 3; i++) {
+		m_window.draw(*m_level1Stars[i]);
+	}
 	m_window.draw(m_playButtonLabel);
 	m_window.draw(m_play2Button);
+	for (int i = 0; i < 3; i++) {
+		m_window.draw(*m_level2Stars[i]);
+	}
 	m_window.draw(m_playButton2Label);
+
 	endDraw();
 }
 
 void Menu::update(float dt)
 {
 	sf::Vector2i mousePos{ m_input.getMouseX(), m_input.getMouseY() };
+	for (int i = 0; i < 3; i++) {
+		m_level1Stars[i]->update(dt);
+		m_level2Stars[i]->update(dt);
+	}
 	if (Collision::checkBoundingBox(m_playButton, mousePos))
 	{
 		m_playButton.setFillColor(m_hoverButtonColour);
@@ -67,28 +92,62 @@ void Menu::update(float dt)
 	{
 		m_playButton.setFillColor(m_defaultButtonColour);
 	}
-	if (Collision::checkBoundingBox(m_play2Button, mousePos))
-	{
-		m_play2Button.setFillColor(m_hoverButtonColour);
-	}
-	else
-	{
-		m_play2Button.setFillColor(m_defaultButtonColour);
+	if (!m_locked2) {
+		if (Collision::checkBoundingBox(m_play2Button, mousePos))
+		{
+			m_play2Button.setFillColor(m_hoverButtonColour);
+		}
+		else
+		{
+			m_play2Button.setFillColor(m_defaultButtonColour);
 
+		}
 	}
 }
 
 void Menu::onBegin()
 {
-	std::cout << "starting menu\n";
+	//std::cout << "starting menu\n";
 	auto view = m_window.getDefaultView();
 	view.setCenter({ 216, 216 });
 	m_window.setView(view);
 	m_audio.playMusicbyName("bgm2");
+	readSave();
 }
 
 void Menu::onEnd()
 {
 	std::cout << "leaving menu\n";
 	m_audio.stopAllMusic();
+}
+
+void Menu::readSave() {
+	std::string type;
+	int value;
+
+	std::ifstream saveFile("data/INSERTFILE.txt");
+	if (!saveFile.is_open()) {
+		std::cerr << "FUCK YOUR SAVE IS GONE!!! THERE'S NO SAVE!!!!!! AAAAAAAAAAAAA";
+	}
+
+	while (saveFile >> type >> value) {
+		if (type == "CurrentLevel") {
+			if (value == 1) {
+				m_locked2 = true;
+			}
+			else if (value == 2) {
+				m_locked2 = false;
+			}
+		}
+		if (type == "Level1Stars")
+			for (int i = 0; i < value; i++) {
+				m_level1Stars[i]->setAchieved();
+			}
+		if (type == "Level2Stars")
+			for (int i = 0; i < value; i++) {
+				m_level2Stars[i]->setAchieved();
+			}
+	}
+
+
 }
