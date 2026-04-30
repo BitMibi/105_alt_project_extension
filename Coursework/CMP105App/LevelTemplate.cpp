@@ -61,10 +61,10 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 			else if (type == "mapDimensions") { mapDimensions = { unsigned(value1), unsigned(value2) }; }
 			else if (type == "position") {position = { float(value1), float(value2) };}
 		}
-		else  if (line == "times") {
+		  if (line == "times") {
 			if (type == "OneStar") { oneStar = value1; }
 			else if (type == "TwoStar") { twoStar = value1; }
-			else if (type == "ThreeStar") { threeStar = value1; }
+			else if (type == "ThreeStar") { threeStar = value1; break; }		//Breaks to not read through the whole file before reading the background data
 		}
 	}
 	
@@ -131,6 +131,7 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 
 	//Read in the background values
 	 while (currentLevelData >> line >> type >> value1 >> value2) {
+		 std::cout << "they call me the backgrounder";
 		if (line == "background") {
 			if (type == "columns") { num_columns = value1; }
 			else if (type == "rows") { num_rows = value1; }
@@ -141,7 +142,7 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 
 	}
 
-
+	 //std::cout << num_columns << num_rows << tile_size << mapDimensions.x << mapDimensions.y << position.x << position.y;
 	 	 
 	
 	 if (currentLevelData.is_open()) {
@@ -175,7 +176,6 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 
 		if (tileValue >= 0) {
 
-			std::cout << tileValue;
 			tileMap.push_back(tileValue);
 
 		}

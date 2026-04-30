@@ -32,6 +32,7 @@ private:
     Coin m_coin;
     GameObject m_boopBlock;
     Flag m_flag;
+    bool m_gameEnd = false;
 
     float m_oneStarTime;
     float m_twoStarTime;

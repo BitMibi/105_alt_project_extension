@@ -1,3 +1,2 @@
-CurrentLevel 2
-Level2Stars 0
 Level1Stars 3
+Level2Stars 3

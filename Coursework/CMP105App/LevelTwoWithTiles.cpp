@@ -52,6 +52,7 @@ void LevelTwoWithTiles::onBegin()
 	m_coin.setAlive(false);
 	m_player.setPosition({ 100, 100 });
 	m_audio.playMusicbyName("bgm3");
+	m_gameEnd = false;
 }
 
 void LevelTwoWithTiles::onEnd()
@@ -61,10 +62,10 @@ void LevelTwoWithTiles::onEnd()
 	// sfx
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
-	
 
+	std::cout << m_gameEnd;
 	//Check if level is left by beating -- might change to be a function later
-	if (m_player.getGameEndTriggered()) {
+	if (m_gameEnd) {
 
 		std::string type;
 		int value;
@@ -115,6 +116,7 @@ void LevelTwoWithTiles::onEnd()
 	}
 
 	m_timeManager.resetTime();
+	m_gameEnd = false;
 
 }
 
@@ -122,12 +124,20 @@ void LevelTwoWithTiles::handleInput(float dt)
 {
 	m_player.handleInput(dt);
 
-	// if I press F on the flag  / I press escape.
-	if (((m_flag.getPosition() - m_player.getPosition()).length() < 75 &&
-		m_input.isPressed(sf::Keyboard::Scancode::F)) ||
-		m_input.isPressed(sf::Keyboard::Scancode::Escape))
+	//  I press escape. 
+	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
 	{
+		
 		// return to menu.
+		m_gameState.setCurrentState(State::MENU);
+	}
+	//if I press F on the flag  
+	if ((m_flag.getPosition() - m_player.getPosition()).length() < 75 &&
+		m_input.isPressed(sf::Keyboard::Scancode::F)) {
+
+		//set win level true
+		m_gameEnd = true;
+		//return to menu.
 		m_gameState.setCurrentState(State::MENU);
 	}
 	if (m_input.isPressed(sf::Keyboard::Scancode::Tab)) {
