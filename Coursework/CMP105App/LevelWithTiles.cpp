@@ -1,103 +1,14 @@
 #include "LevelWithTiles.h"
 
 LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio)
-	: LevelTemplate(window, input, gameState, audio), m_alertText(m_font)
+	: LevelTemplate(window, input, gameState, audio), m_alertText(m_font), m_timer(m_font)
 {
 
-	setUpLevel(m_tilemap, m_bgtilemap, "data/level1.txt", "data/level1TM.txt", "data/level1BG.txt", "gfx/tilemap.png", "gfx/tilemap-backgrounds.png");
+	setUpLevel(m_tilemap, m_bgtilemap, m_oneStarTime, m_twoStarTime, m_threeStarTime, "data/level1.txt", "data/level1TM.txt", "data/level1BG.txt", "gfx/tilemap.png", "gfx/tilemap-backgrounds.png");
 	m_tilemap.buildLevel();
 	m_bgtilemap.buildLevel(); 
 	
-	/*
-	GameObject tile;
-	std::vector<GameObject> tileSet;
-
-	int num_columns = 20;
-	int num_rows = 9;
-	int tile_size = 18;      // Visual size of the tile
-	int sheet_spacing = 1;   // Gap between tiles
-
-
-	// Set GameObject size (Scaling up 4x for visibility)
-	// 4 * 18 = 3 * 24 = 72 (dino size is 24).
-	tile.setSize(sf::Vector2f(tile_size * 4, tile_size * 4));
-	tile.setCollisionBox({ { 0,0 }, tile.getSize() });
-
-	for (int i = 0; i < num_columns * num_rows; i++)
-	{
-		int row = i / num_columns;
-		int col = i % num_columns;
-
-		tile.setTextureRect({
-			{(tile_size + sheet_spacing) * col, (tile_size + sheet_spacing) * row},
-			{tile_size, tile_size} });
-		if (col <= 4 || col >= 12) tile.setCollider(true);
-		else tile.setCollider(false);
-		tileSet.push_back(tile);
-	}
-
-	// Add Blank
-	tile.setTextureRect({ {0, 0}, {-24, -24} }); // Empty rect for blank
-	int b = tileSet.size();
-	tile.setCollider(false);
-	tileSet.push_back(tile);
-
-	sf::Vector2u mapDimensions{ 40, 8 };
-	std::vector<int> tileMap = {
-		b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b  , b  , b  , b  , b  , b  , b, b, b, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , 131, b  , b  , b  , 131, b  , b  , b  , 131,  21,  22,  23, b, b, b,  21,  22,  22,  22,  22,  23, b, b, b,  21,  22,  22,  23, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , 131, b  , b  , b  , 131, b  , 21 ,  22, 22 , 121, 122, 123, b, b, b, 121, 122, 122, 122, 122, 123, b, b, b, 121, 122, 122, 123, 22 , 22 , 23 , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , 131, b  , b  , 21 ,  22, 22 , 121, 122, 122, 121, 122, 123, b, b, b, 121, 122, 122, 122, 122, 123, b, b, b, 121, 122, 122, 123, 122, 122, 123, 22 , 22 , 22 , 22 , 22 , 22 , 22 , 23 ,
-		21 ,  22, 22 , 22 , 121, 122, 122, 121, 122, 122, 121, 122, 123, b, b, b, 121, 122, 122, 122, 122, 123, b, b, b, 121, 122, 122, 123, 122, 122, 123, 122, 122, 122, 122, 122, 122, 122, 123,
-		121, 122, 122, 122, 121, 122, 122, 121, 122, 122, 121, 122, 123, b, b, b, 121, 122, 122, 122, 122, 123, b, b, b, 121, 122, 122, 123, 122, 122, 123, 122, 122, 122, 122, 122, 122, 122, 123,
-		121, 122, 122, 122, 121, 122, 122, 121, 122, 122, 121, 122, 123, b, b, b, 121, 122, 122, 122, 122, 123, b, b, b, 121, 122, 122, 123, 122, 122, 123, 122, 122, 122, 122, 122, 122, 122, 123,
-		141, 142, 142, 142, 141, 142, 142, 141, 142, 142, 141, 142, 143, b, b, b, 141, 142, 142, 142, 142, 143, b, b, b, 141, 142, 142, 143, 142, 142, 143, 142, 142, 142, 142, 142, 142, 142, 143
-	};
 	
-
-	m_tilemap.loadTexture("gfx/tilemap.png");
-	m_tilemap.setTileSet(tileSet);
-	m_tilemap.setTileMap(tileMap, mapDimensions);
-	m_tilemap.setPosition({ 0, 100 });
-	m_tilemap.buildLevel();
-
-	tileSet.clear();
-
-	// setup background
-	tile_size = 24;
-	num_columns = 8;
-	num_rows = 3;
-	// 24 * 9 = 216, a multiple of 72, the LCM of the player and tile size.
-	tile.setSize(sf::Vector2f(tile_size * 9, tile_size * 9));
-
-	for (int i = 0; i < num_columns * num_rows; i++)
-	{
-		int row = i / num_columns;
-		int col = i % num_columns;
-
-		tile.setTextureRect({
-			{(tile_size + sheet_spacing) * col, (tile_size + sheet_spacing) * row},
-			{tile_size, tile_size} });
-		tile.setCollider(false);		// don't collide with background
-		tileSet.push_back(tile);
-	}
-
-	mapDimensions = { 14,3 };
-	tileMap = {
-		6,6,6,6,6,6,6,6,6,6,6,6,6,6,
-		14,14,14,14,14,14,14,14,14,14,14,14,14,14,
-		22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22
-	};
-	m_bgtilemap.loadTexture("gfx/tilemap-backgrounds.png");
-	m_bgtilemap.setTileSet(tileSet);
-	m_bgtilemap.setTileMap(tileMap, mapDimensions);
-	m_bgtilemap.setPosition({ 0, 0 });
-	m_bgtilemap.buildLevel();
-
-	// setup player 
-	m_player.setInput(&m_input);
-	m_player.setEdges(0, WORLD_SIZE.x);
-	//*/
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 	m_alertText.setString("Who keeps turning\nthe wind off?");
@@ -105,6 +16,12 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_alertText.setCharacterSize(36);
 	m_alertText.setFillColor(sf::Color::Black);
 	m_promptTimer = PROMPT_TIME;
+	
+	m_timer.setCharacterSize(20);
+	m_timer.setFillColor(sf::Color::Black);
+
+	
+
 	if (!m_tileTexture.loadFromFile("gfx/tilemap.png")) std::cerr << "no tile image found";
 
 	// setup flags and end game pos
@@ -135,10 +52,24 @@ void LevelWithTiles::handleInput(float dt)
 
 	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
 		m_gameState.setCurrentState(State::MENU);
+	if (m_input.isPressed(sf::Keyboard::Scancode::Tab)) {
+		if (m_timerActive) {
+			m_timerActive = false;
+		}
+		else {
+			m_timerActive = true;
+		}
+	}
 }
 
 void LevelWithTiles::update(float dt)
 {
+	m_timer.setPosition({ m_player.getPosition().x , m_player.getPosition().y - (VIEW_SIZE.y / 8.f) + 10 });
+	m_timeManager.addTime(dt);
+	float roundedTime = round(m_timeManager.getCurrentTime() * 100) / 100; //SHOULD multiply time by 100 (1.234 -> 123.4) then round (123) then divide again by 100 (1.23) to round to 2 d.p
+	std::string timerMessage =  std::to_string(roundedTime);
+	m_timer.setString(timerMessage);
+
 
 	if (m_flagLeverPulled)
 	{
@@ -203,7 +134,7 @@ void LevelWithTiles::update(float dt)
 	}
 	if (m_player.getGameEndTriggered())
 	{
-		
+		m_timeManager.setFinalTime();
 		m_gameState.setCurrentState(State::MENU);
 	}
 
@@ -246,6 +177,9 @@ void LevelWithTiles::render()
 	for (auto& flag : m_flags) m_window.draw(*flag);
 	m_window.draw(m_player);
 	m_window.draw(m_alertText);
+	if (m_timerActive) {
+		m_window.draw(m_timer);
+	}
 	endDraw();
 }
 
@@ -264,10 +198,14 @@ void LevelWithTiles::onEnd()
 	if (m_player.getGameEndTriggered()){
 
 		std::string type;
-		std::string value; 
+		int value; 
 		std::string currentData; //String to append to the data to write to the file. yup. i think i know what im doing
+		bool betterStars = true;
 
-		int starsAchieved = 2; //test for now
+		m_timeManager.setFinalTime();
+		int starsAchieved = m_timeManager.checkClearTime(m_oneStarTime, m_twoStarTime, m_threeStarTime);
+		
+
 
 		std::ifstream saveFileRead("data/save.txt");
 		if (!saveFileRead.is_open()) {
@@ -275,19 +213,36 @@ void LevelWithTiles::onEnd()
 		}
 		while (saveFileRead >> type >> value){
 			if (type == "CurrentLevel") {
-				currentData = type + " 2\n";
+				if (value < 2) {
+					currentData = type + " 2\n";
+				}
 			}
-			if (type == "Level2Stars") {
-				currentData += type + " " + value;
+			else if (type == "Level2Stars") {
+				currentData += type + " " + std::to_string(value);
+			}
+			else if (type == "Level1Stars") {
+				if (starsAchieved <= value) {
+					betterStars = false;
+				}
 			}
 		}
 
-		std::cout << currentData;
-		std::ofstream saveFileWrite("data/save.txt");
-		if (!saveFileWrite.is_open()) {
-			std::cerr << "houston. we've got a fucking disaster";
+
+		if (betterStars) {
+			std::ofstream saveFileWrite("data/save.txt");
+			if (!saveFileWrite.is_open()) {
+				std::cerr << "houston. we've got a fucking disaster";
+			}
+		
+			saveFileWrite << currentData << "\nLevel1Stars " << starsAchieved;
+
+
+			saveFileWrite.close();
 		}
-		saveFileWrite << currentData << "\nLevel1Stars " << starsAchieved;
+
+
+		saveFileRead.close();
+		
 	}
 
 	// reset player and level state
@@ -302,4 +257,5 @@ void LevelWithTiles::onEnd()
 	// sfx
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
+	m_timeManager.resetTime();
 }

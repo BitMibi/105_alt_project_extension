@@ -38,12 +38,12 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	for (int i = 0; i < 3; i++) {
 		m_level1Stars[i] = new Star;
 		m_level1Stars[i]->setSize({ 50,50 });
-		m_level1Stars[i]->setPosition({ float((m_playButton.getPosition().x + m_playButton.getSize().x) - (50 * i)), 118});	//Set the star positions
+		m_level1Stars[i]->setPosition({ float((m_playButton.getPosition().x + m_playButton.getSize().x) - (50 * (2-i))), 118});	//Set the star positions
 	}
 	for (int i = 0; i < 3; i++) {
 		m_level2Stars[i] = new Star;
 		m_level2Stars[i]->setSize({ 50,50 });
-		m_level2Stars[i]->setPosition({ float((m_play2Button.getPosition().x + m_play2Button.getSize().x) - (50 * i)), 258 });	//Set the star positions
+		m_level2Stars[i]->setPosition({ float((m_play2Button.getPosition().x + m_play2Button.getSize().x) - (50 * (2-i))), 258 });	//Set the star positions
 	}
 
 	if (!m_titleSplash.loadFromFile("gfx/title_splash.png")) std::cerr << "no splash found";
@@ -130,7 +130,7 @@ void Menu::update(float dt)
 
 void Menu::onBegin()
 {
-	//std::cout << "starting menu\n";
+	std::cout << "starting menu\n";
 	auto view = m_window.getDefaultView();
 	view.setCenter({ 216, 216 });
 	m_window.setView(view);
