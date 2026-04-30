@@ -1,13 +1,17 @@
 
-levelTiles columns 20 0
-levelTiles rows 9 0
-levelTiles tile_size 18 0
-levelTiles sheet_spacing 1 0
-levelTiles mapDimensions 40 8
-levelTiles position 0 0
+levelTiles columns 20. 0
+levelTiles rows 9. 0
+levelTiles tile_size 18. 0
+levelTiles sheet_spacing 1. 0
+levelTiles mapDimensions 40. 8
+levelTiles position 0. 0
 
-background columns 8 0
-background rows 3 0
-background tile_size 24 0
-background mapDimensions 14 5
-background position 0 -200
+times OneStar 11.5 0
+times TwoStar 9.5 0
+times ThreeStar 6.5 0
+
+background columns 8. 0
+background rows 3. 0
+background tile_size 24. 0
+background mapDimensions 14. 5
+background position 0. -200

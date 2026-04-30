@@ -1,5 +1,5 @@
 #include "LevelTemplate.h"
-#include <fstream>
+
 
  LevelTemplate::LevelTemplate(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio): Scene(window, input, gameState, audio) {
 
@@ -22,7 +22,7 @@ void LevelTemplate::updateCameraAndBackground(Player& playerRef, TileMap& bgRef)
 	bgRef.setPosition({ player_pos.x - halfViewWidth, 0 });
 }
 
-void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture) {
+void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, float& twoStar, float& threeStar, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture) {
 
 	GameObject tile;
 	std::vector<GameObject> tileSet;
@@ -33,13 +33,16 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 	//Used to read in data 
 	std::string line;
 	std::string type;
-	int value1;
+	float value1;
 	int value2; //used for the map dimensions
 
 	std::ifstream currentLevelData(dataFileToLoad);
 	if (!currentLevelData.is_open()) {
 		std::cerr << "no level dot txt file :(";
 	}
+
+
+	
 	
 	int num_columns = 1;	//Base values in case of an error 
 	int num_rows = 1;
@@ -56,12 +59,16 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 			else if (type == "tile_size") { tile_size = value1; }      // Visual size of the tile
 			else if (type == "sheet_spacing"){ sheet_spacing = value1; }  // Gap between tiles
 			else if (type == "mapDimensions") { mapDimensions = { unsigned(value1), unsigned(value2) }; }
-			else if (type == "position") {position = { float(value1), float(value2) }; break;}
+			else if (type == "position") {position = { float(value1), float(value2) };}
 		}
-		
+		  if (line == "times") {
+			if (type == "OneStar") { oneStar = value1; }
+			else if (type == "TwoStar") { twoStar = value1; }
+			else if (type == "ThreeStar") { threeStar = value1; break; }		//Breaks to not read through the whole file before reading the background data
+		}
 	}
-
-
+	
+	
 	// Set GameObject size (Scaling up 4x for visibility)
 	// 4 * 18 = 3 * 24 = 72 (dino size is 24).
 	tile.setSize(sf::Vector2f(tile_size * 4, tile_size * 4));
@@ -124,6 +131,7 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 
 	//Read in the background values
 	 while (currentLevelData >> line >> type >> value1 >> value2) {
+		 std::cout << "they call me the backgrounder";
 		if (line == "background") {
 			if (type == "columns") { num_columns = value1; }
 			else if (type == "rows") { num_rows = value1; }
@@ -133,6 +141,8 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 		}
 
 	}
+
+	 //std::cout << num_columns << num_rows << tile_size << mapDimensions.x << mapDimensions.y << position.x << position.y;
 	 	 
 	
 	 if (currentLevelData.is_open()) {
@@ -159,13 +169,12 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataF
 	
 	std::ifstream bgTileData(bgFile);
 	if (!bgTileData.is_open()) {
-		std::cerr << "no tile map dot excel file :(";
+		std::cerr << "no tile map dot txt file :(";
 	}
 
 	while (bgTileData >> tileValue) {
 
 		if (tileValue >= 0) {
-
 
 			tileMap.push_back(tileValue);
 

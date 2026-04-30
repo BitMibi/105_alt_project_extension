@@ -32,6 +32,14 @@ private:
     Coin m_coin;
     GameObject m_boopBlock;
     Flag m_flag;
+    bool m_gameEnd = false;
+
+    float m_oneStarTime;
+    float m_twoStarTime;
+    float m_threeStarTime;
+    TimeManager m_timeManager;
+    sf::Text m_timer;
+    bool m_timerActive = false;
 
     const sf::Vector2i WORLD_SIZE = { 2880, 648 };
     const sf::Vector2i VIEW_SIZE = { 432, 432 };

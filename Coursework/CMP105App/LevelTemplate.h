@@ -3,7 +3,10 @@
 #include "Framework/Collision.h"
 #include "Framework/TileMap.h"
 #include "Player.h"
+#include "TimeManager.h"
 #include <algorithm>
+#include <fstream>
+#include <iomanip>
 class LevelTemplate :
     public Scene
 {
@@ -11,7 +14,7 @@ public:
     LevelTemplate(sf::RenderWindow& window, Input& input, GameState& gameState, AudioManager& audio);
 
 
-    void setUpLevel(TileMap& tmRef, TileMap& bgRef, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture);
+    void setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, float& twoStar, float& threeStar, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture);
     
     void updateCameraAndBackground(Player& playerRef, TileMap& bgRef);
 

@@ -6,7 +6,9 @@
 #include "Player.h"
 #include "Lever.h"
 #include "Flag.h"
+#include "TimeManager.h"
 #include <algorithm>
+#include <fstream>
 
 
 class LevelWithTiles :
@@ -24,16 +26,22 @@ public:
 private:
     void updateCameraAndBackground();
 
+    TimeManager m_timeManager;
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
     sf::Texture m_tileTexture;
     Lever m_lever;
     sf::Text m_alertText;
+    sf::Text m_timer;
+    bool m_timerActive = false;
     sf::Font m_font;
     std::vector<Flag*> m_flags;
     bool m_flagLeverPulled = false;
     float m_promptTimer;
+    float m_oneStarTime;
+    float m_twoStarTime;
+    float m_threeStarTime;
 
     const float PROMPT_TIME = 2.f;
     const sf::Vector2i WORLD_SIZE = { 2880, 648 };
