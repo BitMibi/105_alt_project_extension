@@ -4,6 +4,7 @@
 #include "Framework/TileMap.h"
 #include "Player.h"
 #include <algorithm>
+#include <fstream>
 class LevelTemplate :
     public Scene
 {

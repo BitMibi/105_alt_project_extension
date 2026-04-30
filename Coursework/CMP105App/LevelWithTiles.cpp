@@ -259,6 +259,37 @@ void LevelWithTiles::onBegin()
 void LevelWithTiles::onEnd()
 {
 	std::cout << "Level one has been left\n";
+
+	//Check if level is left by beating -- might change to be a function later
+	if (m_player.getGameEndTriggered()){
+
+		std::string type;
+		std::string value; 
+		std::string currentData; //String to append to the data to write to the file. yup. i think i know what im doing
+
+		int starsAchieved = 2; //test for now
+
+		std::ifstream saveFileRead("data/save.txt");
+		if (!saveFileRead.is_open()) {
+			std::cerr << "uhhh. no save :broken_heart:";
+		}
+		while (saveFileRead >> type >> value){
+			if (type == "CurrentLevel") {
+				currentData = type + " 2\n";
+			}
+			if (type == "Level2Stars") {
+				currentData += type + " " + value;
+			}
+		}
+
+		std::cout << currentData;
+		std::ofstream saveFileWrite("data/save.txt");
+		if (!saveFileWrite.is_open()) {
+			std::cerr << "houston. we've got a fucking disaster";
+		}
+		saveFileWrite << currentData << "\nLevel1Stars " << starsAchieved;
+	}
+
 	// reset player and level state
 	m_player.reset();
 	m_flagLeverPulled = false;

@@ -1,2 +1,3 @@
-stars1 0
-stars2 0
+CurrentLevel 1
+Level1Stars 0
+Level2Stars 0

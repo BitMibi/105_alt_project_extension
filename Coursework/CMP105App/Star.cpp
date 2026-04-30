@@ -33,3 +33,7 @@ void Star::update(float dt) {
 void Star::setAchieved() {		//Function to set if the star has been achieved. If this is not called, the star remains grey and unachieved
 	m_currentAnim = &m_shine;
 }
+
+void Star::setUnachieved() {
+	m_currentAnim = &m_grey;
+}

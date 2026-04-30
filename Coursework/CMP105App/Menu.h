@@ -16,14 +16,17 @@ public:
     void onBegin() override;
     void onEnd() override;
     void readSave();
+    void newSave();
 
 private:
 
     GameObject m_playButton;
     GameObject m_play2Button;
+    GameObject m_resetButton;
     sf::Font m_font;
     sf::Text m_playButtonLabel;
     sf::Text m_playButton2Label;
+    sf::Text m_resetButtonLabel;
     GameObject m_titleImage;
     sf::Texture m_titleSplash;
     std::array<Star*, 3 > m_level1Stars;

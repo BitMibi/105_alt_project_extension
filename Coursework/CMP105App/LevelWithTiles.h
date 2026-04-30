@@ -7,7 +7,7 @@
 #include "Lever.h"
 #include "Flag.h"
 #include <algorithm>
-
+#include <fstream>
 
 class LevelWithTiles :
     public LevelTemplate 

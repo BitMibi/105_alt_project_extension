@@ -9,6 +9,7 @@ public:
     Star();
     void update(float dt) override;
     void setAchieved();
+    void setUnachieved();
 
 private:
     sf::Texture m_starTexture;

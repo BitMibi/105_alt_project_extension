@@ -1,7 +1,7 @@
 #include "Menu.h"
 
 Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) :
-	Scene(hwnd, in, gs, aud), m_playButtonLabel(m_font), m_playButton2Label(m_font)
+	Scene(hwnd, in, gs, aud), m_playButtonLabel(m_font), m_playButton2Label(m_font), m_resetButtonLabel(m_font)
 {
 	if (!m_font.openFromFile("font/bitcount.ttf"))
 		std::cerr << "failed to load bitcount font";
@@ -14,6 +14,10 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_playButton2Label.setPosition({ 185,233 });
 	m_playButton2Label.setString("Level 2");
 	m_playButton2Label.setFillColor(sf::Color::Black);
+	m_resetButtonLabel.setCharacterSize(14);
+	m_resetButtonLabel.setPosition({ 340,375 });
+	m_resetButtonLabel.setString("Reset Save");
+	m_resetButtonLabel.setFillColor(sf::Color::Black);
 
 
 	m_playButton.setSize({ 216,100 });			// setup buttons
@@ -24,18 +28,22 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_play2Button.setPosition({ 108,198 });
 	m_play2Button.setCollisionBox({ {0,0}, m_playButton.getSize() });
 	m_play2Button.setFillColor(m_defaultButtonColour);
+	m_resetButton.setSize({ 110, 75 });
+	m_resetButton.setPosition({ 324,350 });
+	m_resetButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_resetButton.setFillColor(m_defaultButtonColour);
 
 
 	//setup stars
 	for (int i = 0; i < 3; i++) {
 		m_level1Stars[i] = new Star;
 		m_level1Stars[i]->setSize({ 50,50 });
-		m_level1Stars[i]->setPosition({ float(304 - (50 * i)), 118 });	//Set the star positions
+		m_level1Stars[i]->setPosition({ float((m_playButton.getPosition().x + m_playButton.getSize().x) - (50 * i)), 118});	//Set the star positions
 	}
 	for (int i = 0; i < 3; i++) {
 		m_level2Stars[i] = new Star;
 		m_level2Stars[i]->setSize({ 50,50 });
-		m_level2Stars[i]->setPosition({ float(304 - (50 * i)), 258 });	//Set the star positions
+		m_level2Stars[i]->setPosition({ float((m_play2Button.getPosition().x + m_play2Button.getSize().x) - (50 * i)), 258 });	//Set the star positions
 	}
 
 	if (!m_titleSplash.loadFromFile("gfx/title_splash.png")) std::cerr << "no splash found";
@@ -57,6 +65,10 @@ void Menu::handleInput(float dt)
 	{
 		m_gameState.setCurrentState(State::LEVELTWO);
 	}
+	if(m_input.isLeftMousePressed() && 
+		Collision::checkBoundingBox(m_resetButton, mousePos)) {
+		newSave();
+	}
 }
 
 void Menu::render()
@@ -73,6 +85,8 @@ void Menu::render()
 		m_window.draw(*m_level2Stars[i]);
 	}
 	m_window.draw(m_playButton2Label);
+	m_window.draw(m_resetButton);
+	m_window.draw(m_resetButtonLabel);
 
 	endDraw();
 }
@@ -103,6 +117,15 @@ void Menu::update(float dt)
 
 		}
 	}
+	else {
+		m_play2Button.setFillColor(m_lockedButtonColour);
+	}
+	if (Collision::checkBoundingBox(m_resetButton, mousePos)) {
+		m_resetButton.setFillColor(m_hoverButtonColour);
+	}
+	else {
+		m_resetButton.setFillColor(m_defaultButtonColour);
+	}
 }
 
 void Menu::onBegin()
@@ -117,7 +140,7 @@ void Menu::onBegin()
 
 void Menu::onEnd()
 {
-	std::cout << "leaving menu\n";
+	//std::cout << "leaving menu\n";
 	m_audio.stopAllMusic();
 }
 
@@ -125,11 +148,13 @@ void Menu::readSave() {
 	std::string type;
 	int value;
 
-	std::ifstream saveFile("data/INSERTFILE.txt");
+	std::ifstream saveFile("data/save.txt");
 	if (!saveFile.is_open()) {
 		std::cerr << "FUCK YOUR SAVE IS GONE!!! THERE'S NO SAVE!!!!!! AAAAAAAAAAAAA";
+		newSave();
 	}
 
+	
 	while (saveFile >> type >> value) {
 		if (type == "CurrentLevel") {
 			if (value == 1) {
@@ -149,5 +174,24 @@ void Menu::readSave() {
 			}
 	}
 
+	saveFile.close();
 
+}
+
+void Menu::newSave() {
+	std::ofstream newSaveFile("data/save.txt");
+	if (!newSaveFile.is_open()) { std::cerr << "erm.. couldn't make new save.."; }
+	newSaveFile << "CurrentLevel 1" << "\nLevel1Stars 0" << "\nLevel2Stars 0";
+	newSaveFile.close();
+
+	//Set values to new save file
+	m_locked2 = true;
+
+	for (int i = 0; i < 3; i++) {
+			m_level1Stars[i]->setUnachieved();
+		}
+
+	for (int i = 0; i < 3; i++) {
+			m_level2Stars[i]->setUnachieved();
+		}
 }
