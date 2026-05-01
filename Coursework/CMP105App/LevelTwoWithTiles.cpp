@@ -83,8 +83,11 @@ void LevelTwoWithTiles::onEnd()
 		}
 		while (saveFileRead >> type >> value) {
 			if (type == "CurrentLevel") {
-				if (value < 2) {
+				if (value < 3) {
 					currentData = type + " 3\n";
+				}
+				else {
+					currentData = type + std::to_string(value);
 				}
 			}
 			else if (type == "Level1Stars") {

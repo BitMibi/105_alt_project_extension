@@ -216,6 +216,9 @@ void LevelWithTiles::onEnd()
 				if (value < 2) {
 					currentData = type + " 2\n";
 				}
+				else {
+					currentData = type + std::to_string(value);
+				}
 			}
 			else if (type == "Level2Stars") {
 				currentData += type + " " + std::to_string(value);
