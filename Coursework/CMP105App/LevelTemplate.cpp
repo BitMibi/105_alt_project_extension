@@ -131,7 +131,6 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 
 	//Read in the background values
 	 while (currentLevelData >> line >> type >> value1 >> value2) {
-		 std::cout << "they call me the backgrounder";
 		if (line == "background") {
 			if (type == "columns") { num_columns = value1; }
 			else if (type == "rows") { num_rows = value1; }

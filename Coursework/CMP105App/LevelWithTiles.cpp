@@ -185,7 +185,7 @@ void LevelWithTiles::render()
 
 void LevelWithTiles::onBegin()
 {
-	std::cout << "Level one has been started\n";
+	//std::cout << "Level one has been started\n";
 	m_audio.playMusicbyName("bgm1");
 	
 }
