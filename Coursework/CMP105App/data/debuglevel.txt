@@ -3,7 +3,7 @@ levelTiles columns 20. 0
 levelTiles rows 9. 0
 levelTiles tile_size 18. 0
 levelTiles sheet_spacing 1. 0
-levelTiles mapDimensions 13. 8
+levelTiles mapDimensions 12. 8
 levelTiles position 0. 100
 
 times OneStar 23. 0

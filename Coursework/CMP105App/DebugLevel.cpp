@@ -12,6 +12,9 @@ DebugLevel::DebugLevel(sf::RenderWindow& window, Input& input, GameState& gameSt
 	m_player.setAudio(&m_audio);
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
+	m_player.setCanDoubleJump(true);
+
+	m_wormias.setSpawnPos({ 520,50 });
 }
 
 void DebugLevel::handleInput(float dt)
@@ -25,6 +28,7 @@ void DebugLevel::handleInput(float dt)
 
 void DebugLevel::update(float dt) {
 	m_player.update(dt);
+	m_wormias.update(dt);
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();
@@ -34,7 +38,15 @@ void DebugLevel::update(float dt) {
 		{
 			m_player.collisionResponse(t);
 		}
+		if (t.isCollider() && Collision::checkBoundingBox(m_wormias, t)) {
+			m_wormias.collisionResponse(t);
+		}
 	}
+
+	if (m_wormias.isAlive()) {
+		m_wormias.playerCollision(m_player, m_audio);
+	}
+	
 
 	updateCameraAndBackground();
 }
@@ -62,6 +74,10 @@ void DebugLevel::render()
 	m_bgtilemap.render(m_window);
 	m_tilemap.render(m_window);
 	m_window.draw(m_player);
+	if (m_wormias.isAlive()) {
+		m_window.draw(m_wormias);
+	}
+	
 	endDraw();
 }
 
@@ -76,5 +92,5 @@ void DebugLevel::onEnd()
 
 	// reset player and level state
 	m_player.reset();
-
+	m_wormias.reset();
 }

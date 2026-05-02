@@ -44,6 +44,9 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setAudio(&m_audio);
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
+
+
+	
 }
 
 void LevelWithTiles::handleInput(float dt)

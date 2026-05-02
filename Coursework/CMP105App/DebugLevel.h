@@ -4,6 +4,7 @@
 #include "Framework/Collision.h"
 #include "Framework/TileMap.h"
 #include "Player.h"
+#include "Worm.h"
 #include <algorithm>
 #include <fstream>
 
@@ -26,6 +27,7 @@ private:
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
+    Worm m_wormias;
     sf::Texture m_tileTexture;
     float m_oneStarTime;
     float m_twoStarTime;

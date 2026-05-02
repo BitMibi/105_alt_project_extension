@@ -58,7 +58,7 @@ void LevelTwoWithTiles::onBegin()
 void LevelTwoWithTiles::onEnd()
 {
 	// reset player
-	m_player.setCanDoubleJump(true);
+	m_player.setCanDoubleJump(false);
 	// sfx
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
@@ -66,7 +66,7 @@ void LevelTwoWithTiles::onEnd()
 	std::cout << m_gameEnd;
 	//Check if level is left by beating -- might change to be a function later
 	if (m_gameEnd) {
-
+		m_player.setCanDoubleJump(true);	//Keep double jump unlocked
 		std::string type;
 		int value;
 		std::string currentData; //String to append to the data to write to the file. yup. i think i know what im doing
@@ -87,7 +87,7 @@ void LevelTwoWithTiles::onEnd()
 					currentData = type + " 3\n";
 				}
 				else {
-					currentData = type + std::to_string(value);
+					currentData = type + " " + std::to_string(value) + "\n";
 				}
 			}
 			else if (type == "Level1Stars") {

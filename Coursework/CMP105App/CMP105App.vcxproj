@@ -184,6 +184,7 @@ sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
   <ItemGroup>
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="DebugLevel.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Flag.cpp" />
     <ClCompile Include="Framework\Animation.cpp" />
     <ClCompile Include="Framework\AudioManager.cpp" />
@@ -204,10 +205,12 @@ sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="TimeManager.cpp" />
+    <ClCompile Include="Worm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Coin.h" />
     <ClInclude Include="DebugLevel.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Flag.h" />
     <ClInclude Include="Framework\Animation.h" />
     <ClInclude Include="Framework\AudioManager.h" />
@@ -224,9 +227,14 @@ sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Lever.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="TimeManager.h" />
+    <ClInclude Include="Worm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CMP105App.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
