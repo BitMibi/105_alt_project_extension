@@ -8,6 +8,7 @@ public:
     void update(float dt) override;
     void collisionResponse(GameObject& collider) override;
     void playerCollision(Player& player, AudioManager& m_auido);
+    void flip();
     
 
 private:

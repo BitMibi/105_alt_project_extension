@@ -32,5 +32,5 @@ void Enemy::playerCollision(Player& player, AudioManager& m_audio) {
 void Enemy::reset() {
 	setPosition(m_spawnPos);
 	m_velocity = { 0,0 };
-
+	setAlive(true);
 }

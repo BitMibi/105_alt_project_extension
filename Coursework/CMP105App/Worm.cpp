@@ -134,3 +134,8 @@ void Worm::playerCollision(Player& player, AudioManager& m_audio) {
 	}
 
 }
+
+void Worm::flip() {
+	if (m_currAnim->getFlipped()) { m_currAnim->setFlipped(false); }
+	else { m_currAnim->setFlipped(true); }
+}

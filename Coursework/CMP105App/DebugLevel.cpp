@@ -13,6 +13,8 @@ DebugLevel::DebugLevel(sf::RenderWindow& window, Input& input, GameState& gameSt
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
 	m_player.setCanDoubleJump(true);
+	m_player.setEndGamePosition({ 864, 325 });
+
 
 	m_wormias.setSpawnPos({ 520,50 });
 }
