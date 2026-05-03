@@ -1,11 +1,12 @@
 #include "Menu.h"
 
 Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) :
-	Scene(hwnd, in, gs, aud), m_playButtonLabel(m_font), m_playButton2Label(m_font), m_resetButtonLabel(m_font)
+	Scene(hwnd, in, gs, aud), m_playButtonLabel(m_font), m_playButton2Label(m_font), m_resetButtonLabel(m_font), m_levelButtonLabel(m_font), m_exitButtonLabel(m_font), m_yesLabel(m_font), m_noLabel(m_font), m_playButton3Label(m_font), m_sureLabel(m_font)
 {
 	if (!m_font.openFromFile("font/bitcount.ttf"))
 		std::cerr << "failed to load bitcount font";
 
+	//Level Select Labels
 	m_playButtonLabel.setCharacterSize(24);		// setup labels
 	m_playButtonLabel.setPosition({ 185,93 });
 	m_playButtonLabel.setString("Level 1");
@@ -14,12 +15,40 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_playButton2Label.setPosition({ 185,233 });
 	m_playButton2Label.setString("Level 2");
 	m_playButton2Label.setFillColor(sf::Color::Black);
+	m_playButton3Label.setCharacterSize(14);
+	m_playButton3Label.setPosition({ 340,375 });	//change
+	m_playButton3Label.setString("Level 3");
+	m_playButton3Label.setFillColor(sf::Color::Black);
+	 
+	//Main menu labels	-- CHANGE ALL
 	m_resetButtonLabel.setCharacterSize(14);
 	m_resetButtonLabel.setPosition({ 340,375 });
 	m_resetButtonLabel.setString("Reset Save");
 	m_resetButtonLabel.setFillColor(sf::Color::Black);
+	m_levelButtonLabel.setCharacterSize(14);
+	m_levelButtonLabel.setPosition({ 340,375 });
+	m_levelButtonLabel.setString("Reset Save");
+	m_levelButtonLabel.setFillColor(sf::Color::Black);
+	m_exitButtonLabel.setCharacterSize(14);
+	m_exitButtonLabel.setPosition({ 340,375 });
+	m_exitButtonLabel.setString("Reset Save");
+	m_exitButtonLabel.setFillColor(sf::Color::Black);
 
+	//Exit Screen -- CHANGE ALL
+	m_yesLabel.setCharacterSize(14);
+	m_yesLabel.setPosition({ 340,375 });
+	m_yesLabel.setString("Reset Save");
+	m_yesLabel.setFillColor(sf::Color::Black);
+	m_noLabel.setCharacterSize(14);
+	m_noLabel.setPosition({ 340,375 });
+	m_noLabel.setString("Reset Save");
+	m_noLabel.setFillColor(sf::Color::Black);
+	m_sureLabel.setCharacterSize(14);
+	m_sureLabel.setPosition({ 340,375 });
+	m_sureLabel.setString("Reset Save");
+	m_sureLabel.setFillColor(sf::Color::Black);
 
+	//Level Select buttons
 	m_playButton.setSize({ 216,100 });			// setup buttons
 	m_playButton.setPosition({ 108,58 });
 	m_playButton.setCollisionBox({ {0,0}, m_playButton.getSize()});
@@ -28,11 +57,35 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 	m_play2Button.setPosition({ 108,198 });
 	m_play2Button.setCollisionBox({ {0,0}, m_playButton.getSize() });
 	m_play2Button.setFillColor(m_defaultButtonColour);
+	//CHANGE
+	m_play3Button.setSize({ 216,100 });
+	m_play3Button.setPosition({ 108,198 });
+	m_play3Button.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_play3Button.setFillColor(m_defaultButtonColour);
+
+	//Main Menu buttons -- CHANGE ALL
 	m_resetButton.setSize({ 110, 75 });
 	m_resetButton.setPosition({ 324,350 });
 	m_resetButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
 	m_resetButton.setFillColor(m_defaultButtonColour);
+	m_exitButton.setSize({ 110, 75 });
+	m_exitButton.setPosition({ 324,350 });
+	m_exitButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_exitButton.setFillColor(m_defaultButtonColour);
+	m_levelButton.setSize({ 110, 75 });
+	m_levelButton.setPosition({ 324,350 });
+	m_levelButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_levelButton.setFillColor(m_defaultButtonColour);
 
+	//Exit Screen buttons -- CHANGE ALL
+	m_yesButton.setSize({ 110, 75 });
+	m_yesButton.setPosition({ 324,350 });
+	m_yesButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_yesButton.setFillColor(m_defaultButtonColour);
+	m_noButton.setSize({ 110, 75 });
+	m_noButton.setPosition({ 324,350 });
+	m_noButton.setCollisionBox({ {0,0}, m_playButton.getSize() });
+	m_noButton.setFillColor(m_defaultButtonColour);
 
 	//setup stars
 	for (int i = 0; i < 3; i++) {
@@ -54,16 +107,22 @@ Menu::Menu(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) 
 void Menu::handleInput(float dt)
 {
 	sf::Vector2i mousePos{ m_input.getMouseX(), m_input.getMouseY()};
-	if(m_input.isLeftMousePressed() && 
-		Collision::checkBoundingBox(m_playButton, mousePos))
-	{
-		m_gameState.setCurrentState(State::LEVELONE);
-	}
-	if (m_input.isLeftMousePressed() &&
-		Collision::checkBoundingBox(m_play2Button, mousePos) &&
-		!m_locked2)
-	{
-		m_gameState.setCurrentState(State::LEVELTWO);
+	if (m_currentMenu == MenuState::LEVELS) {
+		if (m_input.isLeftMousePressed() &&
+			Collision::checkBoundingBox(m_playButton, mousePos))
+		{
+			m_gameState.setCurrentState(State::LEVELONE);
+		}
+		if (m_input.isLeftMousePressed() &&
+			Collision::checkBoundingBox(m_play2Button, mousePos) &&
+			!m_locked2)
+		{
+			m_gameState.setCurrentState(State::LEVELTWO);
+		}
+		if (m_input.isLeftMousePressed() &&
+			Collision::checkBoundingBox(m_play3Button, mousePos) &&
+			!m_locked3)
+			m_gameState.setCurrentState(State::LEVELTHREE);
 	}
 	if(m_input.isLeftMousePressed() && 
 		Collision::checkBoundingBox(m_resetButton, mousePos)) {
