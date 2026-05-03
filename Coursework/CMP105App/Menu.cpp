@@ -128,6 +128,15 @@ void Menu::handleInput(float dt)
 		Collision::checkBoundingBox(m_resetButton, mousePos)) {
 		newSave();
 	}
+	if (m_input.isPressed(sf::Keyboard::Scancode::Z)) {
+		m_gameState.setCurrentState(State::LEVELTHREE);
+	}
+	if (m_input.isPressed(sf::Keyboard::Scancode::X)) {
+		m_gameState.setCurrentState(State::DEBUG);
+	}
+	if (m_input.isPressed(sf::Keyboard::Scancode::Escape)) {
+		m_window.close();
+	}
 }
 
 void Menu::render()

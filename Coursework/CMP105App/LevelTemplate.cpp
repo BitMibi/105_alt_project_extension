@@ -5,22 +5,6 @@
 
 }
 
-void LevelTemplate::updateCameraAndBackground(Player& playerRef, TileMap& bgRef)
-{
-	auto view = m_window.getView();
-	auto player_pos = playerRef.getPosition() + playerRef.getSize() * 0.5f;
-
-	float halfViewWidth = VIEW_SIZE.x / 2.0f;
-	float halfViewHeight = VIEW_SIZE.y / 2.0f;
-
-	player_pos.x = std::clamp(player_pos.x, halfViewWidth, WORLD_SIZE.x - halfViewWidth);
-	player_pos.y = std::clamp(player_pos.y, halfViewHeight, WORLD_SIZE.y - halfViewHeight);
-
-	view.setCenter(player_pos);
-	m_window.setView(view);
-
-	bgRef.setPosition({ player_pos.x - halfViewWidth, 0 });
-}
 
 void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, float& twoStar, float& threeStar, std::string dataFileToLoad, std::string tileMapFile, std::string bgFile, std::string textureFile, std::string bgTexture) {
 
@@ -131,7 +115,6 @@ void LevelTemplate::setUpLevel(TileMap& tmRef, TileMap& bgRef, float& oneStar, f
 
 	//Read in the background values
 	 while (currentLevelData >> line >> type >> value1 >> value2) {
-		 std::cout << "they call me the backgrounder";
 		if (line == "background") {
 			if (type == "columns") { num_columns = value1; }
 			else if (type == "rows") { num_rows = value1; }

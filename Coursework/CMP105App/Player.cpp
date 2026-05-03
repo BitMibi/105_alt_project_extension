@@ -132,6 +132,9 @@ void Player::collisionResponse(GameObject& collider)
 {
 	sf::FloatRect playerCollider = getCollisionBox();
 	sf::FloatRect wallBounds = collider.getCollisionBox();
+
+
+
 	auto overlap = playerCollider.findIntersection(wallBounds);
 	if (!overlap) return; // if there is no overlap, then leave.
 	if (overlap->size.x < overlap->size.y)
