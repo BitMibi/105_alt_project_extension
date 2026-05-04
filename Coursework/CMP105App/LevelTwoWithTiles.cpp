@@ -63,8 +63,7 @@ void LevelTwoWithTiles::onEnd()
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
 
-	std::cout << m_gameEnd;
-	//Check if level is left by beating -- might change to be a function later
+	//Check if level is left by beating 
 	if (m_gameEnd) {
 		m_player.setCanDoubleJump(true);	//Keep double jump unlocked
 		std::string type;
@@ -92,6 +91,9 @@ void LevelTwoWithTiles::onEnd()
 			}
 			else if (type == "Level1Stars") {
 				currentData += type + " " + std::to_string(value);
+			}
+			else if (type == "Level3Stars") {
+				currentData += type + " " + std::to_string(value) + "\n";
 			}
 			else if (type == "Level2Stars") {
 				if (starsAchieved <= value) {

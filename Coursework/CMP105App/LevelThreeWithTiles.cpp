@@ -217,7 +217,61 @@ void LevelThreeWithTiles::onBegin() {
 void LevelThreeWithTiles::onEnd()
 {
 
+	if (m_player.getGameEndTriggered()) {
 
+		std::string type;
+		int value;
+		std::string currentData; //String to append to the data to write to the file. yup. i think i know what im doing
+		bool betterStars = true;
+
+		m_timeManager.setFinalTime();
+		int starsAchieved = m_timeManager.checkClearTime(m_oneStarTime, m_twoStarTime, m_threeStarTime);
+
+
+
+		std::ifstream saveFileRead("data/save.txt");
+		if (!saveFileRead.is_open()) {
+			std::cerr << "uhhh. no save :broken_heart:";
+		}
+		while (saveFileRead >> type >> value) {
+			if (type == "CurrentLevel") {
+				if (value < 2) {
+					currentData = type + " 3\n";
+				}
+				else {
+					currentData = type + " " + std::to_string(value) + "\n";
+				}
+			}
+			else if (type == "Level1Stars") {
+				currentData += type + " " + std::to_string(value) + "\n";
+			}
+			else if (type == "Level2Stars") {
+				currentData += type + " " + std::to_string(value);
+			}
+			else if (type == "Level3Stars") {
+				if (starsAchieved <= value) {
+					betterStars = false;
+				}
+			}
+		}
+
+
+		if (betterStars) {
+			std::ofstream saveFileWrite("data/save.txt");
+			if (!saveFileWrite.is_open()) {
+				std::cerr << "houston. we've got a fucking disaster";
+			}
+
+			saveFileWrite << currentData << "\nLevel3Stars " << starsAchieved;
+
+
+			saveFileWrite.close();
+		}
+
+
+		saveFileRead.close();
+
+	}
 
 	// reset player and level state
 	m_player.reset();
