@@ -74,11 +74,11 @@ void Player::handleInput(float dt)
 		}
 	}
 
-	// for debugging: "Where am I?"
+	/* for debugging: "Where am I?"
 	if (m_input->isPressed(sf::Keyboard::Scancode::T))
 	{
 		std::cout << getPosition().x << "/" << getPosition().y << "\n";
-	}
+	}*/
 
 }
 

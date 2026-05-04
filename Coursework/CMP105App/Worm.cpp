@@ -3,7 +3,7 @@
 
 Worm::Worm() {
 	if (!m_wormTexture.loadFromFile("gfx/worm_sheet.png")) {
-		std::cerr << "WORMIAS IS DEAD";
+		std::cerr << "WORM HAS DEAD";
 	}
 	setTexture(&m_wormTexture);
 	for (int i = 0; i < 6; i++) {

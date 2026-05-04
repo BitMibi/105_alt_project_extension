@@ -9,7 +9,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_bgtilemap.buildLevel(); 
 	
 	
-	//m setup text
+	// setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 	m_alertText.setString("Who keeps turning\nthe wind off?");
 	m_alertText.setPosition({ 50, 150});
@@ -188,16 +188,14 @@ void LevelWithTiles::render()
 
 void LevelWithTiles::onBegin()
 {
-	//std::cout << "Level one has been started\n";
 	m_audio.playMusicbyName("bgm1");
 	
 }
 
 void LevelWithTiles::onEnd()
 {
-	std::cout << "Level one has been left\n";
 
-	//Check if level is left by beating -- might change to be a function later
+	//Check if level is left by beating 
 	if (m_player.getGameEndTriggered()){
 
 		std::string type;

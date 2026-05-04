@@ -63,7 +63,7 @@ void LevelTwoWithTiles::onEnd()
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
 
-	//Check if level is left by beating -- might change to be a function later
+	//Check if level is left by beating 
 	if (m_gameEnd) {
 		m_player.setCanDoubleJump(true);	//Keep double jump unlocked
 		std::string type;
