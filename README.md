@@ -1,4 +1,31 @@
-# CMP105 Extension Proposal
+# CMP105 2026 Final Submission
+## Game
+Dino Handyman: Man Handier
+A short game where you play as a dinosaur fixing some odd problems. Speed is key if you want completion!
+## Controls:
+* WASD to move
+* Space to jump
+* Left Control to dash
+* Left-click for menu selection
+* Escape to go back (e.g. from level to menu, or to close the game from the menu)
+
+# Student Details
+## Student Name: Ethan Cowan
+## Student Number: 2502541
+## Course: CGAD 
+
+# Changelist
+The changes you have made since the group submission.
+* Added a timer feature and star rating to each level to add replayability
+* Added a save system to remember the amount of stars the player has achieved, plus which levels can be selected
+* Added a worm enemy that inherits from and Enemy class
+* Added a LevelTemplate.h/.css which allows levels to be read in from files
+## Known Bugs
+* Some odd collisions with the player and tilemaps
+
+
+
+# ORIGINAL Extension Proposal
 
 ## Student Details
 
@@ -30,11 +57,12 @@ Dino Handyman: Man Handier will be an action platformer in which the player must
 
 * Data-driven level loading to make the creation of each level easier (This was already done within my group game).
 
-* Enemies. For example, a simple goomba-esque enemy moving back and forth until it hits something or a boo-like enemy that follows the player unless being looked at. Perhaps even an enemy that fires an arcing projectile.  
+* NEW:A moving enemy introduced in a new level ~~Enemies. For example, a simple goomba-esque enemy moving back and forth until it hits something or a boo-like enemy that follows the player unless being looked at. Perhaps even an enemy that fires an arcing projectile.~~  
 
 * Star ranks for each level mainly dictated by speed, but could be given based on speed and style/score.
 
-## Should Have Features
+# Disclaimer - Sadly did not implement these. 
+## Should Have Features 
 
 * A level select that shows each level and how many stars you obtained on them, and unlocking each level to be selected only after beating the one before.
 
