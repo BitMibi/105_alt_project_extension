@@ -8,10 +8,16 @@ AudioManager::AudioManager()
 
 	addMusic("bgm1", "sfx/bgm1.mp3");
 	getMusic("bgm1")->setVolume(20.f);
+	getMusic("bgm1")->setLooping(true);
 	addMusic("bgm2", "sfx/bgm2.mp3");
 	getMusic("bgm2")->setVolume(20.f);
+	getMusic("bgm2")->setLooping(true);
 	addMusic("bgm3", "sfx/bgm3.mp3");
 	getMusic("bgm3")->setVolume(20.f);
+	getMusic("bgm3")->setLooping(true);
+	addMusic("bgm4", "sfx/nature.mp3");
+	getMusic("bgm4")->setVolume(20.f);
+	getMusic("bgm4")->setLooping(true);
 
 }
 

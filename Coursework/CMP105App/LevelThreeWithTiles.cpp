@@ -213,6 +213,7 @@ void LevelThreeWithTiles::render()
 
 void LevelThreeWithTiles::onBegin() {
 	//insert starting music here
+	m_audio.playMusicbyName("bgm4");
 }
 void LevelThreeWithTiles::onEnd()
 {
