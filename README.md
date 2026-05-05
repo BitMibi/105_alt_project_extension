@@ -1,7 +1,7 @@
 # CMP105 2026 Final Submission
 ## Game
 Dino Handyman: Man Handier
-A short game where you play as a dinosaur fixing some odd problems. Speed is key if you want completion!
+ * A short game where you play as a dinosaur fixing some odd problems. Speed is key if you want completion!
 ## Controls:
 * WASD to move
 * Space to jump
