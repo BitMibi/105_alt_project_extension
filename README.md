@@ -10,9 +10,9 @@ A short game where you play as a dinosaur fixing some odd problems. Speed is key
 * Escape to go back (e.g. from level to menu, or to close the game from the menu)
 
 # Student Details
-## Student Name: Ethan Cowan
-## Student Number: 2502541
-## Course: CGAD 
+ * Student Name: Ethan Cowan
+ * Student Number: 2502541
+ * Course: CGAD 
 
 # Changelist
 The changes you have made since the group submission.
