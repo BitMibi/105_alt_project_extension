@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
+#include <sstream>
 class LevelTemplate :
     public Scene
 {

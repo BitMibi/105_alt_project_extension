@@ -84,9 +84,9 @@ void LevelThreeWithTiles::update(float dt) {
 
 	m_timer.setPosition({ m_player.getPosition().x , m_player.getPosition().y - (VIEW_SIZE.y / 8.f) + 10 });
 	m_timeManager.addTime(dt);
-	float roundedTime = round(m_timeManager.getCurrentTime() * 100) / 100; //SHOULD multiply time by 100 (1.234 -> 123.4) then round (123) then divide again by 100 (1.23) to round to 2 d.p
-	std::string timerMessage = std::to_string(roundedTime);
-	m_timer.setString(timerMessage);
+	std::ostringstream timerMessage;
+	timerMessage << std::setprecision(4) << m_timeManager.getCurrentTime();
+	m_timer.setString(timerMessage.str());
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();

@@ -1,4 +1,4 @@
 CurrentLevel 3
-Level1Stars 3
-Level2Stars 2
-Level3Stars 2
+Level1Stars 3Level3Stars 2
+
+Level2Stars 3
